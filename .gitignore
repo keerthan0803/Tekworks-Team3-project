@@ -3,11 +3,19 @@
 # =========================
 backend/venv/
 backend/__pycache__/
+**/__pycache__/
 backend/*.pyc
 backend/.ipynb_checkpoints/
 
 # Environment variables
 .env
+backend/.env
+frontend/.env
+
+# Keep data, notebooks, and model artifacts tracked
+!**/*.csv
+!**/*.ipynb
+!**/*.pkl
 
 # =========================
 # Node / Frontend
