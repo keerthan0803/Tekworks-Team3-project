@@ -34,6 +34,10 @@ from product_sensitivity_service import (  # noqa: E402
 	PredictRequest as ProductSensitivityRequest,
 	predict_product_sensitivity,
 )
+from purchase_propensity_service import (  # noqa: E402
+	PredictRequest as PurchasePropensityRequest,
+	predict_purchase_propensity,
+)
 
 
 @app.get("/")
@@ -66,3 +70,10 @@ def product_sensitivity_endpoint(
 	request: ProductSensitivityRequest,
 ) -> Dict[str, Any]:
 	return predict_product_sensitivity(request)
+
+
+@app.post("/predict/purchase-propensity")
+def purchase_propensity_endpoint(
+	request: PurchasePropensityRequest,
+) -> Dict[str, Any]:
+	return predict_purchase_propensity(request)

@@ -156,6 +156,28 @@ function App() {
           },
         ],
       },
+      {
+        id: 'purchase-propensity',
+        label: 'Purchase Propensity',
+        title: 'Purchase Propensity Prediction',
+        description:
+          'Estimate purchase likelihood using customer attributes.',
+        fields: [
+          { name: 'Age', type: 'number', placeholder: 'e.g., 35' },
+          { name: 'Income', type: 'number', placeholder: 'e.g., 65000' },
+          {
+            name: 'City',
+            type: 'select',
+            options: ['New York', 'Chicago', 'Houston', 'Los Angeles', 'Miami'],
+          },
+          {
+            name: 'Marital_Status',
+            type: 'select',
+            options: ['Single', 'Married', 'Divorced', 'Widowed'],
+          },
+          { name: 'Score', type: 'number', placeholder: 'e.g., 0.42' },
+        ],
+      },
     ],
     [],
   )
@@ -213,6 +235,7 @@ function App() {
         market: '/predict/market',
         product: '/predict/product-demand',
         'product-sensitivity': '/predict/product-sensitivity',
+        'purchase-propensity': '/predict/purchase-propensity',
       }
 
       const body =
