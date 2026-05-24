@@ -131,7 +131,6 @@ function App() {
   })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
-  const [realTime, setRealTime] = useState(true)
   const [showToast, setShowToast] = useState(false)
   const [toastMessage, setToastMessage] = useState('')
 
