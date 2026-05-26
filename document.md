@@ -40,7 +40,7 @@ Base URL: http://127.0.0.1:8000
   - Health check
 
 - POST /predict/churn
-  - Body: {"data": { ... }}
+  - Body: {"data": { .... }}
 
 - POST /predict/subscription
   - Body: {"data": { ... }}
