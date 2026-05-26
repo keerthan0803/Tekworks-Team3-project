@@ -43,7 +43,7 @@ Base URL: http://127.0.0.1:8000
   - Body: {"data": { .... }}
 
 - POST /predict/subscription
-  - Body: {"data": { ... }}
+  - Body: {"data": { ....}}
   - Response includes text label and numeric value.
 
 - POST /predict/market
