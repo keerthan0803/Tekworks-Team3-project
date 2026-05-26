@@ -1128,43 +1128,25 @@ function App() {
                 ? 'negative' 
                 : 'positive'
             }`}>
-              {isChurn && result.prediction === 'Yes' ? 'HIGH CHURN RISK' : ''}
-              {isChurn && result.prediction === 'No' ? 'LOW CHURN RISK' : ''}
-              {isSubscription && result.prediction === 'Yes' ? 'LIKELY TO RENEW' : ''}
-              {isSubscription && result.prediction === 'No' ? 'UNLIKELY TO RENEW' : ''}
-              {isMarket && result.prediction === 'Yes' ? 'RESPONSIVE CLIENT' : ''}
-              {isMarket && result.prediction === 'No' ? 'UNRESPONSIVE CLIENT' : ''}
-              {!isChurn && !isSubscription && !isMarket && result.prediction}
+              {isChurn ? (result.prediction === 'Yes' ? 'Churn' : 'Not Churn') : 
+               isSubscription ? (result.prediction === 'Yes' ? 'Subscription Renews' : 'Subscription Does Not Renew') :
+               isMarket ? (result.prediction === 'Yes' ? 'Will Respond' : 'Will Not Respond') :
+               typeof result.prediction === 'number' ? Number(result.prediction).toFixed(2) : result.prediction}
             </span>
           </div>
+          <p className="pred-explanation">
+            {isChurn && result.prediction === 'Yes' && 'Customer is likely to leave/cancel service'}
+            {isChurn && result.prediction === 'No' && 'Customer is likely to remain with the service'}
+            {isSubscription && result.prediction === 'Yes' && 'Customer will renew their subscription'}
+            {isSubscription && result.prediction === 'No' && 'Customer will not renew their subscription'}
+            {isMarket && result.prediction === 'Yes' && 'Customer is likely to respond to campaign'}
+            {isMarket && result.prediction === 'No' && 'Customer is unlikely to respond to campaign'}
+            {activeView === 'product' && 'Forecasted product demand units based on sales metrics'}
+            {activeView === 'product-sensitivity' && 'Price sensitivity level for dynamic pricing strategy'}
+            {activeView === 'purchase-propensity' && 'Likelihood score of customer making a purchase'}
+            {isSegmentation && `Customer segment with distinct behavioral characteristics`}
+          </p>
         </div>
-
-        {/* Dynamic risk score meter / probability line for extra visual impact */}
-        {(isChurn || isSubscription || isMarket) && (
-          <div className="probability-meter-container">
-            <div className="prob-labels">
-              <span>Low Risk</span>
-              <span>High Risk</span>
-            </div>
-            <div className="meter-track">
-              <div 
-                className={`meter-bar ${
-                  (isChurn && result.prediction === 'Yes') || (isSubscription && result.prediction === 'No')
-                    ? 'danger-bar' 
-                    : 'safe-bar'
-                }`}
-                style={{ 
-                  width: (isChurn && result.prediction === 'Yes') || (isSubscription && result.prediction === 'No')
-                    ? '85%' 
-                    : '15%' 
-                }}
-              />
-            </div>
-            <p className="prob-explanation">
-              Estimating confidence metrics at {(isChurn && result.prediction === 'Yes') || (isSubscription && result.prediction === 'No') ? '85.4%' : '14.6%'} confidence based on neural weights.
-            </p>
-          </div>
-        )}
 
         {/* Support detailed API responses (such as coordinate mapping or specific segmentation keys) */}
         {isSegmentation && result.cluster !== undefined && (
